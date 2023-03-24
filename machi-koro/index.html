@@ -1,158 +1,160 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Dice Roller</title>
-    <style>
-        #result {
-          font-size: 2em;
-        }
-        body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      h1, p, #result {
-        text-align: center;
-      }
-      .button-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-      }
-        button {
-        display: inline-block;
-        width: 100px;
-        height: 100px;
-        font-size: 24px;
-        margin: 10px;
-        border-radius: 10px;
-        border: none;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        transition-duration: 0.4s;
-        cursor: pointer;
-      }
-      
-      #one-die {
-        background-color: #4C28D3;
-        color: white;
-      }
-      
-      #two-dice {
-        background-color: #900C3F;
-        color: white;
-      }
-      
-      /* button:hover {
-        background-color: #3e8e41;
-      } */
-      button:hover {
-        opacity: 0.8;
-      }
-      </style>
-  </head>
-  <body>
-    <h1>Dice Roller</h1>
-    <div class="button-container">
+
+<head>
+  <title>Dice Roller</title>
+  <style>
+    #result {
+      font-size: 2em;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1,
+    p,
+    #result {
+      text-align: center;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    button {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      font-size: 24px;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+
+    #one-die {
+      background-color: #4C28D3;
+      color: white;
+    }
+
+    #two-dice {
+      background-color: #900C3F;
+      color: white;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Dice Roller</h1>
+  <div class="button-container">
     <button id="one-die" onclick="rollOneDie()">Roll One Die</button>
     <button id="two-dice" onclick="rollTwoDice()">Roll Two Dice</button>
-</div>
-    <p id="result">&nbsp</p>
+  </div>
+  <p id="result">&nbsp</p>
 
-    <script>
-      function rollOneDie() {
-        const roll = Math.floor(Math.random() * 6) + 1;
-        const resultEl = document.getElementById("result");
-        resultEl.textContent = `${roll}`;
-      }
-      
-      function rollTwoDice() {
-        const roll1 = Math.floor(Math.random() * 6) + 1;
-        const roll2 = Math.floor(Math.random() * 6) + 1;
-        const total = roll1 + roll2;
-        const resultEl = document.getElementById("result");
-        resultEl.textContent = `${roll1} + ${roll2} = ${total}`;
-      }
-    </script>
-    <h1>Dice Odds</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Roll</th>
-          <th>Odds</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2</td>
-          <td id="odds-2"></td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td id="odds-3"></td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td id="odds-4"></td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td id="odds-5"></td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td id="odds-6"></td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td id="odds-7"></td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td id="odds-8"></td>
-        </tr>
-        <tr>
-          <td>9</td>
-          <td id="odds-9"></td>
-        </tr>
-        <tr>
-          <td>10</td>
-          <td id="odds-10"></td>
-        </tr>
-        <tr>
-          <td>11</td>
-          <td id="odds-11"></td>
-        </tr>
-        <tr>
-          <td>12</td>
-          <td id="odds-12"></td>
-        </tr>
-      </tbody>
-    </table>
+  <script>
+    function rollOneDie() {
+      const roll = Math.floor(Math.random() * 6) + 1;
+      const resultEl = document.getElementById("result");
+      resultEl.textContent = `${roll}`;
+    }
 
-    <script>
-        // Calculate the odds of rolling each value from 2 to 12
-        const odds = {};
-        for (let i = 2; i <= 12; i++) {
-          odds[i] = 0;
-          for (let j = 1; j <= 6; j++) {
-            for (let k = 1; k <= 6; k++) {
-              if (j + k === i) {
-                odds[i]++;
-              }
-            }
+    function rollTwoDice() {
+      const roll1 = Math.floor(Math.random() * 6) + 1;
+      const roll2 = Math.floor(Math.random() * 6) + 1;
+      const total = roll1 + roll2;
+      const resultEl = document.getElementById("result");
+      resultEl.textContent = `${roll1} + ${roll2} = ${total}`;
+    }
+  </script>
+  <h1>Dice Odds</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Roll</th>
+        <th>Odds</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2</td>
+        <td id="odds-2"></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td id="odds-3"></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td id="odds-4"></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td id="odds-5"></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td id="odds-6"></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td id="odds-7"></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td id="odds-8"></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td id="odds-9"></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td id="odds-10"></td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td id="odds-11"></td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td id="odds-12"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    // Calculate the odds of rolling each value from 2 to 12
+    const odds = {};
+    for (let i = 2; i <= 12; i++) {
+      odds[i] = 0;
+      for (let j = 1; j <= 6; j++) {
+        for (let k = 1; k <= 6; k++) {
+          if (j + k === i) {
+            odds[i]++;
           }
-          odds[i] = `${odds[i]}/${36}`;
         }
-        
-        // Display the odds in the table
-        for (const [roll, oddsValue] of Object.entries(odds)) {
-          const oddsEl = document.getElementById(`odds-${roll}`);
-          oddsEl.textContent = oddsValue;
-        }
-      </script>
-  </body>
-</html>
+      }
+      odds[i] = `${odds[i]}/${36}`;
+    }
 
+    // Display the odds in the table
+    for (const [roll, oddsValue] of Object.entries(odds)) {
+      const oddsEl = document.getElementById(`odds-${roll}`);
+      oddsEl.textContent = oddsValue;
+    }
+  </script>
+</body>
+
+</html>
