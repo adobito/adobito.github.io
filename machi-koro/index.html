@@ -406,11 +406,16 @@
         if (frequencyCell) { // Check if frequency cell exists
           let frequencyPercentage = getFrequencyPercentage(i);
           let oddsPercentage = getOddsPercentage(i);
+          let percentageDifference = frequencyPercentage - oddsPercentage;
+          // allow +- 50% of actual odds
+          let percentageThreshold = oddsPercentage / 2;
           frequencyCell.textContent = `${frequencyPercentage}%`;
-          if (Math.abs(frequencyPercentage - oddsPercentage) < oddsPercentage / 2) {
-            frequencyCell.style.color = 'green';
-          } else {
+          if (percentageDifference < -percentageThreshold) {
             frequencyCell.style.color = 'red';
+          } else if (percentageDifference > percentageThreshold){
+            frequencyCell.style.color = 'purple';
+          } else {
+            frequencyCell.style.color = 'green';
           }
         }
       }
