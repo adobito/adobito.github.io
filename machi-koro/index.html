@@ -9,8 +9,7 @@
       flex-direction: column;
       align-items: center;
     }
-    h1,
-    p,
+
     #result {
       font-size: 6vw;
       text-align: center;
@@ -22,21 +21,22 @@
       justify-content: center;
     }
 
+
     button {
-        width: 20vw;
-        /* max-width: 150px; */
-        height: 20vw;
-        /* max-height: 150px; */
-        font-size: 6vw;
-        margin: 10px;
-        border-radius: 10px;
-        border: none;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        transition-duration: 0.4s;
-        cursor: pointer;
-      }
+      width: 20vw;
+      /* max-width: 150px; */
+      height: 20vw;
+      /* max-height: 150px; */
+      font-size: 6vw;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
 
     #one-die {
       background-color: #4C28D3;
@@ -47,52 +47,93 @@
       background-color: #900C3F;
       color: white;
     }
+
     button:hover {
       opacity: 0.8;
     }
-    #dice-odds.td {
-        font-size: 4vw;
+
+    #dice-odds.td,
+    #dice-stats.td {
+      font-size: 4vw;
     }
+
     @media screen and (max-width: 600px) {
-        button {
-          width: 50vw;
-          height: 50vw;
-          font-size: 16vw;
-        }
-        
-        table {
-          font-size: 6vw;
-        }
-      }
-      
-      @media screen and (min-width: 601px) and (max-width: 1200px) {
-        table {
-          font-size: 4vw;
-        }
-      }
-      
-      @media screen and (min-width: 1201px) {
-        table {
-          font-size: 4vw;
-        }
+      button {
+        width: 50vw;
+        height: 50vw;
+        font-size: 16vw;
       }
 
       table {
-        border-collapse: collapse;
-        width: 100%;
-        max-width: 600px;
-        margin-top: 20px;
+        font-size: 6vw;
       }
-      
-      th, td {
-        padding: 10px;
-        text-align: center;
-        border: 1px solid #ddd;
+    }
+
+    @media screen and (min-width: 601px) and (max-width: 1200px) {
+      table {
+        font-size: 4vw;
       }
-      
-      th {
-        background-color: #f2f2f2;
+    }
+
+    @media screen and (min-width: 1201px) {
+      table {
+        font-size: 4vw;
       }
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 600px;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .clear-frequency-button {
+      font-size: 0.8em;
+      padding: 0.2em 0.5em;
+      height: 1.5em;
+      width: 12em;
+      background-color: red;
+      color: white;
+    }
+  
+
+    /* Hide all tab content by default */
+    .tab-content {
+      display: none;
+    }
+
+    /* Show active tab content */
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Style for tabs */
+    .tab {
+      display: inline-block;
+      margin: 0 10px;
+      cursor: pointer;
+      border: 1px solid black;
+      padding: 5px 10px;
+      background-color: lightgray;
+    }
+
+    /* Style for active tab */
+    .tab.active {
+      background-color: white;
+      border-bottom: none;
+    }
   </style>
 </head>
 
@@ -104,7 +145,235 @@
   </div>
   <p id="result">&nbsp</p>
 
+  <div class="tab-wrapper">
+    <!-- Tab 1: Stats -->
+    <div class="tab active" onclick="showTab(1)">Stats</div>
+
+    <!-- Tab 2: Odds -->
+    <div class="tab" onclick="showTab(2)">Odds</div>
+
+    <!-- Tab 3: Order -->
+    <div class="tab" onclick="showTab(3)">Order</div>
+  </div>
+
+  <!-- Tab Content 1: Stats -->
+  <div class="tab-content active" id="tab-content-1">
+    <table id="dice-stats">
+      <thead>
+        <tr>
+          <th>Roll</th>
+          <th>Odds</th>
+          <th>Freq</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2</td>
+          <td id="odds-percentage-2"></td>
+          <td id="frequency-2"></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td id="odds-percentage-3"></td>
+          <td id="frequency-3"></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td id="odds-percentage-4"></td>
+          <td id="frequency-4"></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td id="odds-percentage-5"></td>
+          <td id="frequency-5"></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td id="odds-percentage-6"></td>
+          <td id="frequency-6"></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td id="odds-percentage-7"></td>
+          <td id="frequency-7"></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td id="odds-percentage-8"></td>
+          <td id="frequency-8"></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td id="odds-percentage-9"></td>
+          <td id="frequency-9"></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td id="odds-percentage-10"></td>
+          <td id="frequency-10"></td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td id="odds-percentage-11"></td>
+          <td id="frequency-11"></td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td id="odds-percentage-12"></td>
+          <td id="frequency-12"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="display:flex; justify-content:center;">
+      <button class="clear-frequency-button" onclick="clearFrequencyData()">Clear Frequency Data</button>
+    </div>
+  </div>
+
+  <!-- Tab Content 2: Odds -->
+  <div class="tab-content" id="tab-content-2">
+    <table id="dice-odds">
+      <thead>
+        <tr>
+          <th>Roll</th>
+          <th>Odds</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2</td>
+          <td id="odds-2"></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td id="odds-3"></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td id="odds-4"></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td id="odds-5"></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td id="odds-6"></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td id="odds-7"></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td id="odds-8"></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td id="odds-9"></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td id="odds-10"></td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td id="odds-11"></td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td id="odds-12"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tab Content 3: Order -->
+  <div class="tab-content" id="tab-content-3">
+    <table>
+      <tr>
+        <th>Order</th>
+      </tr>
+      <tr>
+        <td style="background-color: red; color: white;">Restaurants</td>
+      </tr>
+      <tr>
+        <td style="background: linear-gradient(to right, #00bfff, #00ff00);">Primary & Secondary Industries</td>
+      </tr>
+      <tr>
+        <td style="background-color: purple; color: white;">Major Establishments</td>
+      </tr>
+      <tr>
+        <td style="background-color: orange; color: white;">Landmarks</td>
+      </tr>
+    </table>
+  </div>
+
   <script>
+    function showTab(tabIndex) {
+      // Get all tab content and tabs
+      var tabContent = document.getElementsByClassName('tab-content');
+      var tabs = document.getElementsByClassName('tab');
+
+      // Hide all tab content
+      for (var i = 0; i < tabContent.length; i++) {
+        tabContent[i].classList.remove('active');
+      }
+
+      // Deactivate all tabs
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove('active');
+      }
+
+      // Activate selected tab and content
+      document.getElementById('tab-content-' + tabIndex).classList.add('active');
+      document.getElementsByClassName('tab')[tabIndex - 1].classList.add('active');
+    }
+  </script>
+
+  <script>
+    function getFrequencyJson() {
+      let frequency = JSON.parse(localStorage.getItem('frequency')) || {
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+        7: 0,
+        8: 0,
+        9: 0,
+        10: 0,
+        11: 0,
+        12: 0
+      };
+      return frequency;
+    }
+    function clearFrequencyData() {
+      if (confirm("Are you sure you want to clear frequency data?")) {
+        let frequency = {
+          2: 0,
+          3: 0,
+          4: 0,
+          5: 0,
+          6: 0,
+          7: 0,
+          8: 0,
+          9: 0,
+          10: 0,
+          11: 0,
+          12: 0
+        };
+        localStorage.setItem('frequency', JSON.stringify(frequency));
+        updateFrequencyCells();
+      }
+
+    }
+    function storeTwoDiceFrequency(diceRoll) {
+      let frequency = getFrequencyJson();
+      frequency[diceRoll] += 1;
+
+      // Store the updated frequency object in storage
+      localStorage.setItem('frequency', JSON.stringify(frequency));
+    }
     function rollOneDie() {
       const roll = Math.floor(Math.random() * 6) + 1;
       const resultEl = document.getElementById("result");
@@ -115,85 +384,86 @@
       const roll1 = Math.floor(Math.random() * 6) + 1;
       const roll2 = Math.floor(Math.random() * 6) + 1;
       const total = roll1 + roll2;
+      storeTwoDiceFrequency(total);
       const resultEl = document.getElementById("result");
+      updateFrequencyCells();
       resultEl.textContent = `${roll1} + ${roll2} = ${total}`;
     }
-  </script>
-  <table id="dice-odds">
-    <thead>
-      <tr>
-        <th>Roll</th>
-        <th>Odds</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>2</td>
-        <td id="odds-2"></td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td id="odds-3"></td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td id="odds-4"></td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td id="odds-5"></td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td id="odds-6"></td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td id="odds-7"></td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td id="odds-8"></td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td id="odds-9"></td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td id="odds-10"></td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td id="odds-11"></td>
-      </tr>
-      <tr>
-        <td>12</td>
-        <td id="odds-12"></td>
-      </tr>
-    </tbody>
-  </table>
 
-  <script>
-    // Calculate the odds of rolling each value from 2 to 12
-    const odds = {};
-    for (let i = 2; i <= 12; i++) {
-      odds[i] = 0;
-      for (let j = 1; j <= 6; j++) {
-        for (let k = 1; k <= 6; k++) {
-          if (j + k === i) {
-            odds[i]++;
+    function getFrequencyPercentage(number) {
+      let frequencyData = getFrequencyJson();
+      let sum = Object.values(frequencyData).reduce((accumulator, currentValue) => accumulator + currentValue);
+      if (sum == 0) {
+        sum = 1;
+      }
+      return ((frequencyData[number] / sum) * 100).toFixed(2);
+    }
+    function updateFrequencyCells() {
+      for (var i = 2; i <= 12; i++) {
+        var roll = i; // Roll values start at 2
+        var frequencyId = "frequency-" + roll; // ID of frequency cell for this roll
+        var frequencyCell = document.getElementById(frequencyId);
+        if (frequencyCell) { // Check if frequency cell exists
+          let frequencyPercentage = getFrequencyPercentage(i);
+          let oddsPercentage = getOddsPercentage(i);
+          frequencyCell.textContent = `${frequencyPercentage}%`;
+          if (Math.abs(frequencyPercentage - oddsPercentage) < oddsPercentage / 2) {
+            frequencyCell.style.color = 'green';
+          } else {
+            frequencyCell.style.color = 'red';
           }
         }
       }
-      odds[i] = `${odds[i]}/${36}`;
     }
 
-    // Display the odds in the table
-    for (const [roll, oddsValue] of Object.entries(odds)) {
-      const oddsEl = document.getElementById(`odds-${roll}`);
-      oddsEl.textContent = oddsValue;
+    function getOddsPercentage(number) {
+      // Calculate the odds of rolling each value from 2 to 12
+      const odds = {};
+      for (let i = 2; i <= 12; i++) {
+        odds[i] = 0;
+        for (let j = 1; j <= 6; j++) {
+          for (let k = 1; k <= 6; k++) {
+            if (j + k === i) {
+              odds[i]++;
+            }
+          }
+        }
+        odds[i] = (100 * odds[i] / 36).toFixed(2);
+      }
+      return odds[number];
     }
+
+    function updateOddsPercentageCells() {
+      // Display the odds in the table
+      for (var i = 2; i <= 12; i++) {
+        const oddsEl = document.getElementById(`odds-percentage-${i}`);
+        oddsEl.textContent = `${getOddsPercentage(i)}%`;
+      }
+    }
+
+    function updateOddsFractionCells() {
+      const odds = {};
+        for (let i = 2; i <= 12; i++) {
+            odds[i] = 0;
+            for (let j = 1; j <= 6; j++) {
+                for (let k = 1; k <= 6; k++) {
+                    if (j + k === i) {
+                        odds[i]++;
+                    }
+                }
+            }
+            odds[i] = `${odds[i]}/${36}`;
+        }
+
+        // Display the odds in the table
+        for (const [roll, oddsValue] of Object.entries(odds)) {
+            const oddsEl = document.getElementById(`odds-${roll}`);
+            oddsEl.textContent = oddsValue;
+        }
+    }
+    updateOddsFractionCells();
+    updateOddsPercentageCells();
+    updateFrequencyCells();
   </script>
 </body>
 
