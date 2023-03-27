@@ -506,7 +506,7 @@
           let oddsPercentage = getSingleDiceOddsPercentage(i);
           let percentageDifference = frequencyPercentage - oddsPercentage;
           // allow +- 50% of actual odds
-          let percentageThreshold = oddsPercentage / 2;
+          let percentageThreshold = oddsPercentage / 4;
           frequencyCell.textContent = `${frequencyPercentage}%`;
           if (percentageDifference < -percentageThreshold) {
             frequencyCell.style.color = 'red';
@@ -526,7 +526,7 @@
           let oddsPercentage = getDoubleDiceOddsPercentage(i);
           let percentageDifference = frequencyPercentage - oddsPercentage;
           // allow +- 50% of actual odds
-          let percentageThreshold = oddsPercentage / 2;
+          let percentageThreshold = oddsPercentage / 4;
           frequencyCell.textContent = `${frequencyPercentage}%`;
           if (percentageDifference < -percentageThreshold) {
             frequencyCell.style.color = 'red';
