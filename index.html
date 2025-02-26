@@ -6,17 +6,20 @@
 </head>
 
 <body>
-
-    <!-- Your HTML content goes here -->
-
     <script>
-        // Check if hostname matches and redirect if necessary
         if (window.location.hostname === "kokoroko.bukutu.xyz") {
             var iframe = document.createElement('iframe');
-            iframe.setAttribute('src', 'https://kokoroko.bukutu.xyz/kokoroko'); // replace example.com with the URL you want to load in the iframe
+            iframe.setAttribute('src', 'https://kokoroko.bukutu.xyz/kokoroko');
             iframe.style.width = '100%';
             iframe.style.height = '100vh';
             iframe.style.border = 'none'; 
+            document.body.appendChild(iframe);
+        } else if (window.location.hostname === "adobito.github.io") {
+            var iframe = document.createElement('iframe');
+            iframe.setAttribute('src', 'https://adobito.github.io/capybara/chests');
+            iframe.style.width = '100%';
+            iframe.style.height = '100vh';
+            iframe.style.border = 'none';
             document.body.appendChild(iframe);
         }
     </script>
